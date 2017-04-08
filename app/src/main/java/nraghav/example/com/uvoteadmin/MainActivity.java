@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 getEstimatedServerTimeMs();
 
-                imagesRef = storageRef.child("images").child("parties");
+                imagesRef = storageRef.child("images").child("votes/"+esttime);
 
                 if (CroperinoFileUtil.verifyStoragePermissions(MainActivity.this))
                     prepareChooser();
@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
                     offsetRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot snapshot) {
-//                            long offset = snapshot.getValue(Long.class);
-//                            estimatedServerTimeMs = System.currentTimeMillis() + offset;
-//
+                            long offset = snapshot.getValue(Long.class);
+                            estimatedServerTimeMs = System.currentTimeMillis() + offset;
+
 //                            DateFormat dfm = new SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.UK);
 //
 //                            long unixtime=estimatedServerTimeMs;
@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
 //                            } catch (ParseException e1) {
 //                                e1.printStackTrace();
 //                            }
-                            //DatabaseReference mDatabase = ref.child("surveys").child(String.valueOf(unixtime));
-                            DatabaseReference mDatabase = ref.child("surveys");
+                            DatabaseReference mDatabase = ref.child("surveys").child(String.valueOf(estimatedServerTimeMs));
+                            //DatabaseReference mDatabase = ref.child("surveys");
                             survey p = new survey( photoUrl,a);
                             mDatabase.setValue(p);
                             Intent myIntent = new Intent(MainActivity.this, Main2Activity.class);
