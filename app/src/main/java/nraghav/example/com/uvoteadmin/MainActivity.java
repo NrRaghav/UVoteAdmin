@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
 //                            }
                             DatabaseReference mDatabase = ref.child("surveys").child(String.valueOf(estimatedServerTimeMs));
                             //DatabaseReference mDatabase = ref.child("surveys");
-                            survey p = new survey( photoUrl,a);
+
+                            survey p = new survey(a, photoUrl,null,String.valueOf(estimatedServerTimeMs));
                             mDatabase.setValue(p);
                             Intent myIntent = new Intent(MainActivity.this, Main2Activity.class);
                             startActivity(myIntent);
@@ -219,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 long offset = snapshot.getValue(Long.class);
                 esttime = System.currentTimeMillis() + offset;
-                imagesRef = storageRef.child("images").child("parties").child(String.valueOf(esttime));
+                imagesRef = storageRef.child("images").child("surveys").child(String.valueOf(esttime));
             }
 
             @Override

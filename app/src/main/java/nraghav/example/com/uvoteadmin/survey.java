@@ -1,23 +1,48 @@
 package nraghav.example.com.uvoteadmin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by N RAGHAV on 08-04-17.
  */
 
 public class survey {
-
+    String description;
     String picture;
+    HashMap<String,String>votes;
 
-    public survey(String picture, String description) {
-        this.picture = picture;
-        this.description = description;
-    }
+    String sid;
+
+
     public survey()
     {
 
     }
 
-    String description;
+    public survey(String description, String picture, HashMap<String, String> votes, String sid) {
+        this.description = description;
+        this.picture = picture;
+        this.votes = votes;
+        this.sid = sid;
+    }
+
+    public HashMap<String, String> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(HashMap<String, String> votes) {
+        this.votes = votes;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
 
     public String getPicture() {
         return picture;
